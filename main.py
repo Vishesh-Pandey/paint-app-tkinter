@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import colorchooser
 
 root = Tk()
 root.title("Paint App")
@@ -18,7 +19,7 @@ frame1.grid(row=0 , column=0, sticky=NW)
 
 # toolsFrame 
 
-toolsFrame = Frame(frame1 , height=100 , width=100)
+toolsFrame = Frame(frame1 , height=100 , width=100, relief=SUNKEN , borderwidth=3)
 toolsFrame.grid(row=0 , column=0 )
 
 def usePencil():
@@ -38,10 +39,9 @@ eraserButton.grid(row=1 , column=0)
 toolsLabel = Label(toolsFrame , text="Tools", width=10)
 toolsLabel.grid(row=3 , column=0)
 
-
 # sizeFrame 
 
-sizeFrame = Frame(frame1 , height=100 , width=100 )
+sizeFrame = Frame(frame1 , height=100 , width=100, relief=SUNKEN , borderwidth=3 )
 sizeFrame.grid(row=0 , column=1 )
 
 defaultButton = Button(sizeFrame , text="Default" , width=10 , command=usePencil)
@@ -54,6 +54,18 @@ sizeList.grid(row=1 , column=0)
 
 sizeLabel = Label(sizeFrame , text="Size", width=10)
 sizeLabel.grid(row=2 , column=0)
+
+# colorBoxFrame
+
+colorBoxFrame = Frame(frame1 , height=100 , width=100 ,relief=SUNKEN , borderwidth=3 )
+colorBoxFrame.grid(row = 0 , column=2)
+
+def selectColor():
+    selectedColor = colorchooser.askcolor("blue" , title="Select Color")
+    print(selectedColor)
+
+colorBoxButton = Button(colorBoxFrame , text="Select Color" , width=10 , command=selectColor)
+colorBoxButton.grid(row=0 , column=0)
 
 # Frame - 2 - Canvas
 frame2 = Frame(root , height=500 , width=1100 , bg="yellow")
