@@ -70,6 +70,20 @@ def selectColor():
 colorBoxButton = Button(colorBoxFrame , text="Select Color" , width=10 , command=selectColor)
 colorBoxButton.grid(row=0 , column=0)
 
+# colorsFrame
+
+colorsFrame = Frame(frame1, height=100 , width=100, relief=SUNKEN , borderwidth=3)
+colorsFrame.grid(row = 0 , column=3)
+
+redButton = Button(colorsFrame , text="Red" , bg="red" , width=10 , command=lambda: stroke_color.set("red"))
+redButton.grid(row=0 , column=0)
+
+greenButton = Button(colorsFrame , text="Green" , bg="green" , width=10 , command=lambda: stroke_color.set("green"))
+greenButton.grid(row=1 , column=0)
+
+blueButton = Button(colorsFrame , text="Blue" , bg="blue" , width=10 , command=lambda: stroke_color.set("blue"))
+blueButton.grid(row=2 , column=0)
+
 # Frame - 2 - Canvas
 frame2 = Frame(root , height=500 , width=1100 , bg="yellow")
 frame2.grid(row=1 , column=0)
