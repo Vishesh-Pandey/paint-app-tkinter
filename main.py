@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import colorchooser
+import PIL.ImageGrab as ImageGrab
 
 root = Tk()
 root.title("Paint App")
@@ -64,6 +65,11 @@ def paint(event):
     if event.type == "5" :
         prevPoint = [0,0]
 
+def saveImage():
+    x = root.winfo_rootx()
+    y = root.winfo_rooty()+100
+    img = ImageGrab.grab(bbox=(x,y,x+1100,y+500))
+    img.show()
 
 # ------------------- User Interface -------------------
 
@@ -125,6 +131,14 @@ orangeButton = Button(colorsFrame , text="Orange" , bg="orange" , width=10 , com
 orangeButton.grid(row=1 , column=1)
 purpleButton = Button(colorsFrame , text="Purple" , bg="purple" , width=10 , command=lambda: stroke_color.set("purple"))
 purpleButton.grid(row=2 , column=1)
+
+# saveImageFrame
+
+saveImageFrame = Frame(frame1, height=100 , width=100, relief=SUNKEN , borderwidth=3)
+saveImageFrame.grid(row = 0 , column=4)
+
+saveImageButton = Button(saveImageFrame , text="Save" , bg="white" , width=10 , command=saveImage)
+saveImageButton.grid(row=0 , column=0)
 
 # Frame - 2 - Canvas
 
