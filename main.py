@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import colorchooser
 import PIL.ImageGrab as ImageGrab
+from tkinter import filedialog
+from tkinter import messagebox
 
 root = Tk()
 root.title("Paint App")
@@ -66,10 +68,15 @@ def paint(event):
         prevPoint = [0,0]
 
 def saveImage():
+    fileLocation = filedialog.asksaveasfilename(defaultextension="jpg")
     x = root.winfo_rootx()
     y = root.winfo_rooty()+100
     img = ImageGrab.grab(bbox=(x,y,x+1100,y+500))
-    img.show()
+    img.save(fileLocation)
+    showImage = messagebox.askyesno("Paint App" , "Do you want to open image?")
+    print(showImage)
+    if showImage:
+        img.show()
 
 # ------------------- User Interface -------------------
 
