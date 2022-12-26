@@ -91,6 +91,15 @@ def createNew():
         saveImage()
     clear()
 
+def help():
+    messagebox.showinfo("Help" , "1. Click on Select Color Option select specific color\n2. Click on Clear to clear entire Canvas")
+
+def settings():
+    messagebox.showwarning("Settings" , "Not Available")
+
+def about():
+    messagebox.showinfo("About" , "This paint app is best!")
+
 # ------------------- User Interface -------------------
 
 # Frame - 1 : Tools 
@@ -163,6 +172,18 @@ newImageButton = Button(saveImageFrame , text="New" , bg="white" , width=10 , co
 newImageButton.grid(row=1 , column=0)
 clearImageButton = Button(saveImageFrame , text="Clear" , bg="white" , width=10 , command=clear)
 clearImageButton.grid(row=2 , column=0)
+
+# helpSettingFrame
+
+helpSettingFrame = Frame(frame1, height=100 , width=100, relief=SUNKEN , borderwidth=3)
+helpSettingFrame.grid(row = 0 , column=5)
+
+helpButton = Button(helpSettingFrame , text="Help" , bg="white" , width=10 , command=help)
+helpButton.grid(row=0 , column=0)
+settingButton = Button(helpSettingFrame , text="Settings" , bg="white" , width=10 , command=settings)
+settingButton.grid(row=1 , column=0)
+aboutButton = Button(helpSettingFrame , text="About" , bg="white" , width=10 , command=about)
+aboutButton.grid(row=2 , column=0)
 
 # Frame - 2 - Canvas
 
