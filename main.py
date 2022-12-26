@@ -101,7 +101,8 @@ def createNew():
     clear()
 
 def help():
-    messagebox.showinfo("Help" , "1. Click on Select Color Option select specific color\n2. Click on Clear to clear entire Canvas")
+    helpText = "1. Draw by holding right button of mouse to create dotted lines.\n2.Click scroll well to put text on Canvas.\n3. Click on Select Color Option select specific color\n4. Click on Clear to clear entire Canvas"
+    messagebox.showinfo("Help" , helpText)
 
 def settings():
     messagebox.showwarning("Settings" , "Not Available")
@@ -207,6 +208,14 @@ entryButton = Entry(textFrame, textvariable=textValue, bg="white" , width=20 )
 entryButton.grid(row=1 , column=0)
 clearButton = Button(textFrame , text="Clear" , bg="white" , width=20 , command=lambda:textValue.set(""))
 clearButton.grid(row=2 , column=0)
+
+# noteFrame
+
+noteFrame = Frame(frame1, height=100 , width=200, relief=SUNKEN , borderwidth=3)
+noteFrame.grid(row = 0 , column=7)
+
+textTitleButton = Text(noteFrame, bg="white" , width=40 , height=4 )
+textTitleButton.grid(row=0 , column=0)
 
 # Frame - 2 - Canvas
 
