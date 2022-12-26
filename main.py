@@ -60,7 +60,7 @@ def paint(event):
     # canvas.create_oval(x , y , x +5 , y + 5 , fill="black")
 
     if prevPoint != [0,0] : 
-        canvas.create_polygon(prevPoint[0] , prevPoint[1] , currentPoint[0] , currentPoint[1],fill=stroke_color.get() , outline=stroke_color.get() , width=stroke_size.get())
+        canvas.create_polygon(prevPoint[0] , prevPoint[1] , currentPoint[0] , currentPoint[1],fill=stroke_color.get() , outline=stroke_color.get() , width=stroke_size.get())        
 
     prevPoint = currentPoint
 
@@ -68,15 +68,28 @@ def paint(event):
         prevPoint = [0,0]
 
 def saveImage():
-    fileLocation = filedialog.asksaveasfilename(defaultextension="jpg")
-    x = root.winfo_rootx()
-    y = root.winfo_rooty()+100
-    img = ImageGrab.grab(bbox=(x,y,x+1100,y+500))
-    img.save(fileLocation)
-    showImage = messagebox.askyesno("Paint App" , "Do you want to open image?")
-    print(showImage)
-    if showImage:
-        img.show()
+    try:
+        fileLocation = filedialog.asksaveasfilename(defaultextension="jpg")
+        x = root.winfo_rootx()
+        y = root.winfo_rooty()+100
+        img = ImageGrab.grab(bbox=(x,y,x+1100,y+500))
+        img.save(fileLocation)
+        showImage = messagebox.askyesno("Paint App" , "Do you want to open image?")
+        if showImage:
+            img.show()
+
+    except Exception as e:
+        messagebox.showinfo("Paint app: " , "Error occured")
+
+
+def clear():
+    if messagebox.askokcancel("Paint app" , "Do you want to clear everything?"):
+        canvas.delete('all')
+
+def createNew():
+    if messagebox.askyesno("Paint app" , "Do you want to save before you clear everything?"):
+        saveImage()
+    clear()
 
 # ------------------- User Interface -------------------
 
@@ -146,6 +159,10 @@ saveImageFrame.grid(row = 0 , column=4)
 
 saveImageButton = Button(saveImageFrame , text="Save" , bg="white" , width=10 , command=saveImage)
 saveImageButton.grid(row=0 , column=0)
+newImageButton = Button(saveImageFrame , text="New" , bg="white" , width=10 , command=createNew)
+newImageButton.grid(row=1 , column=0)
+clearImageButton = Button(saveImageFrame , text="Clear" , bg="white" , width=10 , command=clear)
+clearImageButton.grid(row=2 , column=0)
 
 # Frame - 2 - Canvas
 
