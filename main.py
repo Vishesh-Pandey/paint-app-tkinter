@@ -29,6 +29,9 @@ previousColor2.set("white")
 prevPoint = [0,0]
 currentPoint = [0,0] 
 
+# variable for text
+textValue = StringVar()
+
 # --------------------- functions -------------------------
 
 def usePencil():
@@ -106,6 +109,8 @@ def settings():
 def about():
     messagebox.showinfo("About" , "This paint app is best!")
 
+def writeText(event):
+    canvas.create_text(event.x , event.y , text=textValue.get())
 # ------------------- User Interface -------------------
 
 # Frame - 1 : Tools 
@@ -191,6 +196,18 @@ settingButton.grid(row=1 , column=0)
 aboutButton = Button(helpSettingFrame , text="About" , bg="white" , width=10 , command=about)
 aboutButton.grid(row=2 , column=0)
 
+# textFrame
+
+textFrame = Frame(frame1, height=100 , width=200, relief=SUNKEN , borderwidth=3)
+textFrame.grid(row = 0 , column=6)
+
+textTitleButton = Label(textFrame , text="Write you Text here:" , bg="white" , width=20 )
+textTitleButton.grid(row=0 , column=0)
+entryButton = Entry(textFrame, textvariable=textValue, bg="white" , width=20 )
+entryButton.grid(row=1 , column=0)
+clearButton = Button(textFrame , text="Clear" , bg="white" , width=20 , command=lambda:textValue.set(""))
+clearButton.grid(row=2 , column=0)
+
 # Frame - 2 - Canvas
 
 frame2 = Frame(root , height=500 , width=1100 , bg="yellow")
@@ -201,6 +218,7 @@ canvas.grid(row=0 , column=0)
 canvas.bind("<B1-Motion>", paint)
 canvas.bind("<ButtonRelease-1>", paint)
 canvas.bind("<B3-Motion>" , paintRight)
+canvas.bind("<Button-2>", writeText)
 
 root.resizable(False , False)
 root.mainloop()
